@@ -1,30 +1,22 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import MaterialKit from "./plugins/material-kit";
 
 import App from './App.vue'
+import router from "./router";
 //import TestApp from './test/TestApp.vue'
 
-Vue.use(VueRouter);
-Vue.use(BootstrapVue);
+Vue.use(MaterialKit);
 
-const StoreModal = {
-  template: `
-<div class="text-center my-3">
-  <b-btn 
-    v-b-tooltip.hover 
-    @click="$router.push('/')"
-    :title="'This will be modal for store : '+$route.params.id"> choice : {{$route.params.id}}, reset to click </b-btn>
-</div>
-` }
+const NavbarStore = {
+  showNavbar: false
+};
 
-const router = new VueRouter({
-  routes: [
-    { path: '/store/:id', component: StoreModal }
-  ]
+Vue.mixin({
+  data() {
+    return {
+      NavbarStore
+    };
+  }
 });
 
 const app = new Vue({

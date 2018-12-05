@@ -1,14 +1,28 @@
 <template>
-    <div id="app">
-        <navigator/>
-        <app-body :contents="contents"/>
-        <!-- <router-view v-if="isIntroShow"> : .desing 파일 참고 -->
+    <div id="material-kit">
+        <div :class="{'nav-open': NavbarStore.showNavbar}">
+            <router-view name="header"/>
+            <div>
+                <router-view/>
+            </div>
+            <router-view name="footer"/>
+        </div>
     </div>
 </template>
 
+<!--
+<template>
+    <div id="app">
+        <navigator/>
+        <app-body :contents="contents"/>
+    </div>
+</template>
+
+-->
+
 <script>
-import Navigator from "./navigator/index.vue";
-import AppBody from "./appBody/index.vue";
+import Navigator from "./views/my_views/navigator/index.vue";
+import AppBody from "./views/my_views/appBody/index.vue";
 
 export default {
     components: {
