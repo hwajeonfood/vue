@@ -8,7 +8,7 @@
     >
         <div class="md-toolbar-row md-collapse-lateral">
             <div class="md-toolbar-section-start">
-                <h3 class="md-title">Vue Material Kit</h3>
+                <h3 class="md-title">화전 회식</h3>
             </div>
             <div class="md-toolbar-section-end">
                 <md-button
@@ -26,8 +26,9 @@
                         <mobile-menu nav-mobile-section-start="false">
                             <!-- Here you can add your items from the section-start of your toolbar -->
                         </mobile-menu>
+
                         <md-list>
-                            <li class="md-list-item" v-if="!showDownload">
+                            <li class="md-list-item">
                                 <a
                                     href="javascript:void(0)"
                                     class="md-list-item-router md-list-item-container md-button-clean dropdown"
@@ -39,22 +40,32 @@
                                                 class="md-button md-button-link md-white md-simple dropdown-toggle"
                                                 data-toggle="dropdown"
                                             >
-                                                <i class="material-icons">apps</i>
-                                                <p>Components</p>
+                                                <i class="material-icons">filter_list</i>
+                                                <p>메뉴 분류 선정</p>
                                             </md-button>
                                             <ul class="dropdown-menu dropdown-with-icons">
                                                 <li>
-                                                    <a href="#/">
-                                                        <i class="material-icons">layers</i>
-                                                        <p>All Components</p>
+                                                    <a href="javascript:void(0);">
+                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <p>중국 음식</p>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a
-                                                        href="https://demos.creative-tim.com/vue-material-kit/documentation/"
-                                                    >
-                                                        <i class="material-icons">content_paste</i>
-                                                        <p>Documentation</p>
+                                                    <a href="javascript:void(0);">
+                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <p>국수</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);">
+                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <p>술과 고기</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);">
+                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <p>술과 안주</p>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -62,6 +73,34 @@
                                     </div>
                                 </a>
                             </li>
+
+                            <md-list-item href="javascript:void(0);" v-if="isSignIn && isManager">
+                                <i class="material-icons">web</i>
+                                <p class="hidden-lg">상점정보변경/예약확인</p>
+                                <md-tooltip md-direction="bottom">상점정보변경/예약확인</md-tooltip>
+                            </md-list-item>
+                            <md-list-item href="javascript:void(0);" v-else-if="isSIgnIn && isUser">
+                                <i class="material-icons">web</i>
+                                <p class="hidden-lg">유저 예약확인</p>
+                                <md-tooltip md-direction="bottom">유저 예약확인</md-tooltip>
+                            </md-list-item>
+                            <md-list-item href="javascript:void(0);" @click="signOut" v-if="isSignIn">
+                                <i class="material-icons">exit_to_app</i>
+                                <p class="hidden-lg">Sign Out</p>
+                                <md-tooltip md-direction="bottom">Sign Out</md-tooltip>
+                            </md-list-item>
+                            <md-list-item href="javascript:void(0);" @click="showModalSignIn" v-else>
+                                <i class="material-icons">account_circle</i>
+                                <p class="hidden-lg">SignIn</p>
+                                <md-tooltip md-direction="bottom">Sign in for Admin(Manage store) or User(to reserve)</md-tooltip>
+                            </md-list-item>
+                        </md-list>
+
+
+<!--
+
+                        <md-list>
+                            
 
                             <md-list-item
                                 href="https://demos.creative-tim.com/vue-material-kit/documentation/"
@@ -142,7 +181,12 @@
                                 <p class="hidden-lg">Instagram</p>
                                 <md-tooltip md-direction="bottom">Follow us on Instagram</md-tooltip>
                             </md-list-item>
+
                         </md-list>
+-->
+
+
+
                     </div>
                 </div>
             </div>
@@ -193,7 +237,10 @@ export default {
     data() {
         return {
             extraNavClasses: "",
-            toggledClass: false
+            toggledClass: false,
+            isSignIn: true,
+            isManager: true,
+            isUser: false
         };
     },
     computed: {
@@ -203,6 +250,12 @@ export default {
         }
     },
     methods: {
+        signOut(){
+
+        },
+        showModalSignIn(){
+
+        },
         bodyClick() {
             let bodyClick = document.getElementById("bodyClick");
 

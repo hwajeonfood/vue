@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Main from "./views/main.vue";
 import Index from "./views/Index.vue";
 import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
@@ -29,6 +30,15 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
+            name: "main",
+            components: { default: Main, header: MainNavbar, footer: MainFooter },
+            props: {
+                header: { colorOnScroll: 400 },
+                footer: { backgroundColor: "black" }
+            }
+        },
+        {
+            path: "/index",
             name: "index",
             components: { default: Index, header: MainNavbar, footer: MainFooter },
             props: {
