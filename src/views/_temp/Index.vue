@@ -4,40 +4,27 @@
             <div class="md-layout">
                 <div class="md-layout-item">
                     <div class="image-wrapper">
-                        <img :src="steam" alt="steam" class="leaf1">
-                        <!-- <img :src="leaf3" alt="leaf3" class="leaf3" v-show="leafShow">
+                        <img :src="leaf4" alt="leaf4" class="leaf4" v-show="leafShow">
+                        <img :src="leaf3" alt="leaf3" class="leaf3" v-show="leafShow">
                         <img :src="leaf2" alt="leaf2" class="leaf2" v-show="leafShow">
-                        <img :src="leaf1" alt="leaf1" class="leaf1" v-show="leafShow"> -->
+                        <img :src="leaf1" alt="leaf1" class="leaf1" v-show="leafShow">
                         <div class="brand">
-                            <h1>화전 회식</h1>
-                            <h3>여기는 카테고리 필터가 들어가요.</h3>
+                            <h1>Vue Material Kit</h1>
+                            <h3>A Badass Vue.js UI Kit made with Material Design.</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </parallax>
-
         <div class="main main-raised">
-
             <div class="section section-basic">
                 <div class="container">
                     <div class="title">
-                        <h2>선택한 음식들</h2>
+                        <h2>Basic Elements</h2>
                     </div>
-                    <content-container
-                        v-for="content in contents"
-                        :content="content"
-                        :key="content.id"
-                        @clickButton="showStoreModal"
-                    />
+                    <basic-elements></basic-elements>
                 </div>
             </div>
-
-            <div class="modal" v-if="selected">
-                {{selected}}
-            </div>
-            
-<!--             
             <div class="section section-navbars">
                 <div class="container">
                     <small-navigation></small-navigation>
@@ -175,7 +162,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="section section-download" id="downloadSection">
                 <div class="container">
                     <div class="md-layout text-center">
@@ -262,102 +248,78 @@
                     </div>
                 </div>
             </div>
-            
-            -->
         </div>
     </div>
 </template>
 
 <script>
-//import BasicElements from "./components/BasicElementsSection";
-//import Navigation from "./components/NavigationSection";
-//import SmallNavigation from "./components/SmallNavigationSection";
-//import Tabs from "./components/TabsSection";
-//import NavPills from "./components/NavPillsSection";
-//import Notifications from "./components/NotificationsSection";
-//import TypographyImages from "./components/TypographyImagesSection";
-//import JavascriptComponents from "./components/JavascriptComponentsSection";
-//import { LoginCard } from "@/components";
-import ContentContainer from "./components/contentContainer"
+import BasicElements from "./components/BasicElementsSection";
+import Navigation from "./components/NavigationSection";
+import SmallNavigation from "./components/SmallNavigationSection";
+import Tabs from "./components/TabsSection";
+import NavPills from "./components/NavPillsSection";
+import Notifications from "./components/NotificationsSection";
+import TypographyImages from "./components/TypographyImagesSection";
+import JavascriptComponents from "./components/JavascriptComponentsSection";
+import { LoginCard } from "@/components";
 
 export default {
     components: {
-        ContentContainer
-        // BasicElements,
-        // Navigation,
-        // SmallNavigation,
-        // Tabs,
-        // NavPills,
-        // Notifications,
-        // TypographyImages,
-        // JavascriptComponents,
-        // LoginCard
+        BasicElements,
+        Navigation,
+        SmallNavigation,
+        Tabs,
+        NavPills,
+        Notifications,
+        TypographyImages,
+        JavascriptComponents,
+        LoginCard
     },
     name: "index",
     bodyClass: "index-page",
     props: {
-        selected: {
-            type: String,
-            default: null
-        },
-        contents: {
-            type: Array,
-            default: [
-                {id:0, content: "머시기", description: "설명1"},
-                {id:1, content: "머시기", description: "설명2"},
-                {id:2, content: "머시기", description: "설명3"},
-            ]
-        },
         image: {
             type: String,
-            default: require("@/assets/img/hwajeon0.jpg")
+            default: require("@/assets/img/vue-mk-header.jpg")
         },
-        steam: {
+        leaf4: {
             type: String,
-            default: require("@/assets/img/white_steam.gif")
+            default: require("@/assets/img/leaf4.png")
         },
-        // leaf4: {
-        //     type: String,
-        //     default: require("@/assets/img/white_steam.gif")
-        // },
-        // leaf3: {
-        //     type: String,
-        //     default: require("@/assets/img/leaf3.png")
-        // },
-        // leaf2: {
-        //     type: String,
-        //     default: require("@/assets/img/leaf2.png")
-        // },
-        // leaf1: {
-        //     type: String,
-        //     default: require("@/assets/img/leaf1.png")
-        // },
-        // signup: {
-        //     type: String,
-        //     default: require("@/assets/img/city.jpg")
-        // },
-        // landing: {
-        //     type: String,
-        //     default: require("@/assets/img/landing.jpg")
-        // },
-        // profile: {
-        //     type: String,
-        //     default: require("@/assets/img/profile.jpg")
-        // }
+        leaf3: {
+            type: String,
+            default: require("@/assets/img/leaf3.png")
+        },
+        leaf2: {
+            type: String,
+            default: require("@/assets/img/leaf2.png")
+        },
+        leaf1: {
+            type: String,
+            default: require("@/assets/img/leaf1.png")
+        },
+        signup: {
+            type: String,
+            default: require("@/assets/img/city.jpg")
+        },
+        landing: {
+            type: String,
+            default: require("@/assets/img/landing.jpg")
+        },
+        profile: {
+            type: String,
+            default: require("@/assets/img/profile.jpg")
+        }
     },
     data() {
         return {
             firstname: null,
             email: null,
             password: null,
-            leafShow: false,
-            randomVal_0to2: Math.floor(Math.random()*3)
+            leafShow: false
         };
     },
     methods: {
-        showStoreModal(){
-
-        },
         leafActive() {
             if (window.innerWidth < 768) {
                 this.leafShow = false;
@@ -368,7 +330,6 @@ export default {
     },
     computed: {
         headerStyle() {
-            this.image = require("@/assets/img/hwajeon" + this.randomVal_0to2 + ".jpg")
             return {
                 backgroundImage: `url(${this.image})`
             };

@@ -2,7 +2,7 @@
     <md-toolbar
         id="toolbar"
         md-elevation="0"
-        class="md-transparent md-absolute"
+        class="md-transparent md-absolute z-index-over-content"
         :class="extraNavClasses"
         :color-on-scroll="colorOnScroll"
     >
@@ -84,20 +84,29 @@
                                 <p class="hidden-lg">유저 예약확인</p>
                                 <md-tooltip md-direction="bottom">유저 예약확인</md-tooltip>
                             </md-list-item>
-                            <md-list-item href="javascript:void(0);" @click="signOut" v-if="isSignIn">
+                            <md-list-item
+                                href="javascript:void(0);"
+                                @click="signOut"
+                                v-if="isSignIn"
+                            >
                                 <i class="material-icons">exit_to_app</i>
                                 <p class="hidden-lg">Sign Out</p>
                                 <md-tooltip md-direction="bottom">Sign Out</md-tooltip>
                             </md-list-item>
-                            <md-list-item href="javascript:void(0);" @click="showModalSignIn" v-else>
+                            <md-list-item
+                                href="javascript:void(0);"
+                                @click="showModalSignIn"
+                                v-else
+                            >
                                 <i class="material-icons">account_circle</i>
                                 <p class="hidden-lg">SignIn</p>
-                                <md-tooltip md-direction="bottom">Sign in for Admin(Manage store) or User(to reserve)</md-tooltip>
+                                <md-tooltip
+                                    md-direction="bottom"
+                                >Sign in for Admin(Manage store) or User(to reserve)</md-tooltip>
                             </md-list-item>
                         </md-list>
 
-
-<!--
+                        <!--
 
                         <md-list>
                             
@@ -183,10 +192,7 @@
                             </md-list-item>
 
                         </md-list>
--->
-
-
-
+                        -->
                     </div>
                 </div>
             </div>
@@ -195,6 +201,8 @@
 </template>
 
 <script>
+import EventBus from "@/EventBus.js";
+
 let resizeTimeout;
 function resizeThrottler(actualResizeHandler) {
     // ignore resize events as long as an actualResizeHandler execution is in the queue
@@ -250,12 +258,8 @@ export default {
         }
     },
     methods: {
-        signOut(){
-
-        },
-        showModalSignIn(){
-
-        },
+        signOut() {},
+        showModalSignIn() {},
         bodyClick() {
             let bodyClick = document.getElementById("bodyClick");
 
@@ -303,9 +307,37 @@ export default {
     },
     mounted() {
         document.addEventListener("scroll", this.scrollListener);
+        EventBus.$on("nav-bar-z-index-on", () => {
+            let el = this.$el;
+            let className = "z-index-under-content";
+            if (this.hasClass(el, className)) this.removeClass(el, className);
+            className = "z-index-over-content";
+            if (!this.hasClass(el, className)) this.addClass(el, className);
+            console.log(this.$el);
+        });
+
+        EventBus.$on("nav-bar-z-index-off", () => {
+            let el = this.$el;
+            let className = "z-index-over-content";
+            if (this.hasClass(el, className)) this.removeClass(el, className);
+            className = "z-index-under-content";
+            if (!this.hasClass(el, className)) this.addClass(el, className);
+            console.log(this.$el);
+        });
     },
     beforeDestroy() {
         document.removeEventListener("scroll", this.scrollListener);
+        EventBus.$off("nav-bar-z-index-on");
+        EventBus.$off("nav-bar-z-index-off");
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.z-index-over-content {
+    z-index: 4;
+}
+.z-index-under-content {
+    z-index: 3;
+}
+</style>

@@ -1,83 +1,53 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "./views/main.vue";
-import Index from "./views/Index.vue";
-import Landing from "./views/Landing.vue";
-import Login from "./views/Login.vue";
-import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
+import Index from "./views/Index";
+import Login from "./views/Login";
+import StoreModal from "./views/components/StoreModal"
 
 Vue.use(VueRouter);
 
-const mRouter = new VueRouter({
-    routes: [
-        {
-            path: '/store/:id', component: {
-                template: `
-      <div class="text-center my-3">
-        <b-btn 
-          v-b-tooltip.hover 
-          @click="$router.push('/')"
-          :title="'This will be modal for store : '+$route.params.id"> choice : {{$route.params.id}}, reset to click </b-btn>
-      </div>
-      ` }
-        }
-    ]
-});
-
 const router = new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: "/",
-            name: "main",
-            components: { default: Main, header: MainNavbar, footer: MainFooter },
-            props: {
-                header: { colorOnScroll: 400 },
-                footer: { backgroundColor: "black" }
-            }
-        },
-        {
-            path: "/index",
             name: "index",
-            components: { default: Index, header: MainNavbar, footer: MainFooter },
+            components: {
+                header: MainNavbar,
+                body: Index,
+                footer: MainFooter
+            },
             props: {
                 header: { colorOnScroll: 400 },
                 footer: { backgroundColor: "black" }
-            }
-        },
-        {
-            path: "/landing",
-            name: "landing",
-            components: { default: Landing, header: MainNavbar, footer: MainFooter },
-            props: {
-                header: { colorOnScroll: 200 },
-                footer: { backgroundColor: "black" }
-            }
+            },
+            children: [
+                {
+                    path: "store/:id",
+                    components: { default: StoreModal }
+                }
+            ]
         },
         {
             path: "/login",
             name: "login",
-            components: { default: Login, header: MainNavbar, footer: MainFooter },
+            components: {
+                header: MainNavbar,
+                body: Login,
+                footer: MainFooter
+            },
             props: {
                 header: { colorOnScroll: 400 }
             }
         },
-        {
-            path: "/profile",
-            name: "profile",
-            components: { default: Profile, header: MainNavbar, footer: MainFooter },
-            props: {
-                header: { colorOnScroll: 400 },
-                footer: { backgroundColor: "black" }
-            }
-        }
     ],
-    scrollBehavior: to => {
+    scrollBehavior: (to, from) => {
         if (to.hash) {
             return { selector: to.hash };
         } else {
-            return { x: 0, y: 0 };
+            return from;
         }
     }
 })

@@ -1,38 +1,62 @@
 <template>
-  <transition name="modal">
-    <div class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container" v-click-outside="closeModal">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container" @click-outside="closeModal">
+                    <div class="modal-header">
+                        <slot name="header"></slot>
+                    </div>
 
-          <div class="modal-header">
-            <slot name="header"></slot>
-          </div>
+                    <div class="modal-body text-center">
+                        <slot name="body"></slot>
+                    </div>
 
-          <div class="modal-body text-center">
-            <slot name="body"></slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer"></slot>
-          </div>
+                    <div class="modal-footer">
+                        <slot name="footer"></slot>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </transition>
+    </transition>
 </template>
 
 <script>
+import EventBus from "@/EventBus.js";
+
 export default {
-  name: "modal",
-  methods: {
-    closeModal: function() {
-      this.$emit("close");
+    name: "modal",
+    methods: {
+        closeModal() {
+            this.$emit("close");
+        }
+    },
+    mounted() {
+        let el = document.body;
+        let className = "scroll-lock";
+        if (!this.hasClass(el, className)) {
+            this.addClass(el, className);
+        }
+        EventBus.$emit("nav-bar-z-index-off");
+    },
+    destroyed() {
+        let el = document.body;
+        let className = "scroll-lock";
+        if (this.hasClass(el, className)) {
+            this.removeClass(el, className);
+        }
+        EventBus.$emit("nav-bar-z-index-on");
     }
-  }
 };
 </script>
 
 <style lang="scss">
+.scroll-lock {
+    overflow-y: hidden;
+}
+</style>
+
+
+<style lang="scss" scoped>
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
@@ -41,18 +65,25 @@ export default {
  * You can easily play with the modal transition by editing
  * these styles.
  */
+* {
+    z-index: 6;
+}
+
+.modal-container {
+    max-width: calc(85vw);
+}
 
 .modal-enter {
-  opacity: 0;
+    opacity: 0;
 }
 
 .modal-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 </style>
