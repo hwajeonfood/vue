@@ -2,7 +2,7 @@
     <md-toolbar
         id="toolbar"
         md-elevation="0"
-        class="md-transparent md-absolute z-index-3"
+        class="md-transparent md-absolute z-index-4"
         :class="extraNavClasses"
         :color-on-scroll="colorOnScroll"
     >
@@ -250,8 +250,7 @@ export default {
             toggledClass: false,
             isSignIn: true,
             isManager: true,
-            isUser: false,
-            zIndexClass: " z-index-over-content"
+            isUser: false
         };
     },
     computed: {
@@ -310,31 +309,16 @@ export default {
     },
     mounted() {
         document.addEventListener("scroll", this.scrollListener);
-        EventBus.$on("nav-bar-z-index-on", () => {
-            this.zIndexClass = " z-index-over-content";
-        });
-
-        EventBus.$on("nav-bar-z-index-off", () => {
-            this.zIndexClass = " z-index-under-content";
-        });
     },
     beforeDestroy() {
         document.removeEventListener("scroll", this.scrollListener);
-        EventBus.$off("nav-bar-z-index-on");
-        EventBus.$off("nav-bar-z-index-off");
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.z-index-3 {
-    z-index: 3;
-}
-.z-index-over-content {
+.z-index-4 {
     z-index: 4;
-}
-.z-index-under-content {
-    z-index: 3;
 }
 .scroll-hidden {
     overflow-y: hidden !important;

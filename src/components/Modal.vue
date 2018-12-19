@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import EventBus from "@/EventBus.js";
-
 export default {
     name: "modal",
     methods: {
@@ -36,7 +34,6 @@ export default {
         if (!this.hasClass(el, className)) {
             this.addClass(el, className);
         }
-        EventBus.$emit("nav-bar-z-index-off");
     },
     destroyed() {
         let el = document.body;
@@ -44,7 +41,6 @@ export default {
         if (this.hasClass(el, className)) {
             this.removeClass(el, className);
         }
-        EventBus.$emit("nav-bar-z-index-on");
     }
 };
 </script>
@@ -57,14 +53,6 @@ export default {
 
 
 <style lang="scss" scoped>
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 * {
     z-index: 6;
 }
