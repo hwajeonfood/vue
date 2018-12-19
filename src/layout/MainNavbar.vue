@@ -2,7 +2,7 @@
     <md-toolbar
         id="toolbar"
         md-elevation="0"
-        class="md-transparent md-absolute z-index-over-content"
+        class="md-transparent md-absolute z-index-3"
         :class="extraNavClasses"
         :color-on-scroll="colorOnScroll"
     >
@@ -43,7 +43,9 @@
                                                 <i class="material-icons">filter_list</i>
                                                 <p>메뉴 분류 선정</p>
                                             </md-button>
-                                            <ul class="dropdown-menu dropdown-with-icons">
+                                            <ul
+                                                class="dropdown-menu dropdown-with-icons scroll-hidden"
+                                            >
                                                 <li>
                                                     <a href="javascript:void(0);">
                                                         <!-- <i class="material-icons">layers</i> -->
@@ -248,7 +250,8 @@ export default {
             toggledClass: false,
             isSignIn: true,
             isManager: true,
-            isUser: false
+            isUser: false,
+            zIndexClass: " z-index-over-content"
         };
     },
     computed: {
@@ -308,21 +311,11 @@ export default {
     mounted() {
         document.addEventListener("scroll", this.scrollListener);
         EventBus.$on("nav-bar-z-index-on", () => {
-            let el = this.$el;
-            let className = "z-index-under-content";
-            if (this.hasClass(el, className)) this.removeClass(el, className);
-            className = "z-index-over-content";
-            if (!this.hasClass(el, className)) this.addClass(el, className);
-            console.log(this.$el);
+            this.zIndexClass = " z-index-over-content";
         });
 
         EventBus.$on("nav-bar-z-index-off", () => {
-            let el = this.$el;
-            let className = "z-index-over-content";
-            if (this.hasClass(el, className)) this.removeClass(el, className);
-            className = "z-index-under-content";
-            if (!this.hasClass(el, className)) this.addClass(el, className);
-            console.log(this.$el);
+            this.zIndexClass = " z-index-under-content";
         });
     },
     beforeDestroy() {
@@ -334,10 +327,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.z-index-3 {
+    z-index: 3;
+}
 .z-index-over-content {
     z-index: 4;
 }
 .z-index-under-content {
     z-index: 3;
+}
+.scroll-hidden {
+    overflow-y: hidden !important;
 }
 </style>

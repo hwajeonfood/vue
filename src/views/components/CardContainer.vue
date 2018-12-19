@@ -9,7 +9,6 @@
                 @clickButton="showStoreModal"
             />
         </div>
-        <router-view></router-view>
     </div>
 </template>
 

@@ -14,16 +14,20 @@
             </div>
         </parallax>
 
-        <div class="main main-raised">
-            <router-view name="store_modal"></router-view>
+        <router-view name="store_modal"></router-view>
 
+        <div class="main main-raised">
             <div class="section section-basic">
                 <div class="container">
                     <card-container :contents="contents"/>
                 </div>
+            </div>
+            <div class="section section-basic">
                 <div class="container">
                     <card-container :contents="contents"/>
                 </div>
+            </div>
+            <div class="section section-basic">
                 <div class="container">
                     <card-container :contents="contents"/>
                 </div>

@@ -2,7 +2,7 @@
     <div id="wrapper">
         <modal :close="hideModal">
             <template slot="header">
-                <h4 class="modal-title">Modal Title</h4>
+                <h4 class="modal-title">{{store}}</h4>
                 <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="hideModal"
@@ -11,18 +11,71 @@
                 </md-button>
             </template>
 
-            <template slot="body">
-                <md-content class="md-scrollbar scroll_modal">
-                    <md-card class="md-card-nav-tabs">
-                        <md-card-content>슬롯 한개
-                            <br>
-                            <md-button
-                                @click="$router.push('/')"
-                                class="md-simple md-success md-lg"
-                            >나는 모달이다 다시한번 따라해바 나는 모달이다. {{$route.params.id}}</md-button>
-                        </md-card-content>
-                    </md-card>
-                    <p v-for="i in Array(25)" :key="i">스크롤 테스트용</p>
+            <template slot="body" ref="bodyContainer">
+                <div v-if="isLoading">
+                    <div ref="loader"/>
+                </div>
+                <md-content class="md-scrollbar scroll_modal" v-else>
+                    <div class="title">
+                        <h3>{{store}} 입니다! 어서오세요!</h3>
+                    </div>
+                    <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
+                        <md-card class="md-card-nav-tabs">
+                            <md-card-content>
+                                <md-button class="md-success md-lg">설명나오는 곳 :
+                                    <br>
+                                    {{description}}
+                                </md-button>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+
+                    <div class="title">
+                        <h3>메뉴판 / 식당 내부</h3>
+                    </div>
+                    <div class="md-layout">
+                        <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
+                            <md-card>
+                                <carousel
+                                    :per-page="1"
+                                    loop
+                                    :speed="700"
+                                    autoplay
+                                    :autoplay-timeout="5000"
+                                    :mouse-drag="false"
+                                    navigationEnabled
+                                    navigationNextLabel="<i class='material-icons'>keyboard_arrow_right</i>"
+                                    navigationPrevLabel="<i class='material-icons'>keyboard_arrow_left</i>"
+                                >
+                                    <slide v-for="(image, idx) in images" :key="idx">
+                                        <div class="carousel-caption">
+                                            <h4>
+                                                <md-icon>location_on</md-icon>
+                                                {{image_descriptions[idx]}}
+                                            </h4>
+                                        </div>
+                                        <img
+                                            :src="images[0]"
+                                            :alt="image_descriptions[idx]"
+                                            width="100px"
+                                            height="500px"
+                                        >
+                                    </slide>
+                                </carousel>
+                            </md-card>
+                        </div>
+                    </div>
+
+                    <div class="title">
+                        <h3>예약을 원하세요?</h3>
+                    </div>
+                    <div class="md-layout">
+                        <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
+                            <md-card>
+                                <date-pick v-model="date" :hasInputElement="false"></date-pick>
+                            </md-card>
+                        </div>
+                    </div>
                 </md-content>
             </template>
 
@@ -35,16 +88,81 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Loading from "vue-loading-overlay";
 import Modal from "@/components/Modal";
+import DatePick from "vue-date-pick";
+import "vue-date-pick/dist/vueDatePick.css";
+
+Vue.use(Loading);
 
 export default {
     components: {
-        Modal
+        Modal,
+        DatePick
     },
     methods: {
         hideModal() {
             this.$router.push("/");
         }
+    },
+    data() {
+        return {
+            date: (() => {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+
+                if (dd < 10) {
+                    dd = "0" + dd;
+                }
+
+                if (mm < 10) {
+                    mm = "0" + mm;
+                }
+                return `${yyyy}-${mm}-${dd}`;
+            })(),
+            isLoading: true,
+            store: "무엇을 먹을까?",
+            description: "",
+            id: "",
+            images: [],
+            image_descriptions: []
+        };
+    },
+    mounted() {
+        let loader = this.$loading.show({
+            loader: "dots",
+            container: this.$refs.loader
+        });
+
+        // ajax, load db with $route.params.id
+        // `/store/${this.$route.params.id}`
+        this.$http
+            .get(
+                `https://jsonplaceholder.typicode.com/todos/${
+                    this.$route.params.id
+                }`
+            )
+            .then(result => {
+                this.id = result.data["id"];
+                this.store = result.data["userId"] + " store";
+                this.description = result.data["title"];
+                this.images = [
+                    "http://img.etnews.com/news/article/2016/01/25/article_25154943153177.jpg",
+                    "http://cfile203.uf.daum.net/image/21065A42564A9FCD15006E",
+                    "http://cfile214.uf.daum.net/image/236FF744564A9F63168B06"
+                ];
+                this.image_descriptions = [
+                    "그림1의 설명이당",
+                    "그림 2는 무엇인가",
+                    "3번째가 끝"
+                ];
+
+                loader.hide();
+                this.isLoading = false;
+            });
     }
 };
 </script>
@@ -53,5 +171,9 @@ export default {
 .scroll_modal {
     max-height: calc(100vh - 300px);
     overflow-y: auto;
+}
+
+.carousel_size {
+    max-height: calc(400px);
 }
 </style>

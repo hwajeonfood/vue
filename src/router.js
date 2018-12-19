@@ -26,7 +26,10 @@ const router = new VueRouter({
             children: [
                 {
                     path: "store/:id",
-                    components: { default: StoreModal }
+                    components: { store_modal: StoreModal },
+                    props: {
+                        header: { colorOnScroll: 400 },
+                    }
                 }
             ]
         },
