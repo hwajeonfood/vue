@@ -103,12 +103,16 @@
                                                         @click="changeLocale(locMsg['locale-name-short-en'])"
                                                     >
                                                         <i
-                                                            class="material-icons"
-                                                            v-if="navigatorStore.locale == locMsg['locale-name-short-en']"
+                                                            class="material-icons color-green"
+                                                            v-if="locMsg['locale-name-short-en'] == navigatorStore.locale && navigatorStore.locale == $i18n.locale"
                                                         >location_on</i>
                                                         <i
                                                             class="material-icons"
-                                                            v-else-if="$i18n.locale == locMsg['locale-name-short-en']"
+                                                            v-else-if="locMsg['locale-name-short-en'] == navigatorStore.locale"
+                                                        >location_on</i>
+                                                        <i
+                                                            class="material-icons color-green"
+                                                            v-else-if="locMsg['locale-name-short-en'] == $i18n.locale"
                                                         >check</i>
                                                         <i class="material-icons" v-else></i>
                                                         <p>{{locMsg['locale-name']}}</p>
@@ -407,5 +411,8 @@ export default {
 }
 .scroll-hidden {
     overflow-y: hidden !important;
+}
+.color-green {
+    color: green;
 }
 </style>
