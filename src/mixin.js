@@ -5,7 +5,10 @@ const NavbarStore = {
 export default {
     data() {
         return {
-            NavbarStore
+            NavbarStore,
+            navigatorStore: {
+                locale: 'ko'
+            }
         };
     },
     methods: {

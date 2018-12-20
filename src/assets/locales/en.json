@@ -1,0 +1,10 @@
+{
+    "locale-name": "English",
+    "locale-name-short-en": "en",
+    "index": {
+        "title": "Hwajeon Food",
+        "filter-title": "Which food do you like to eat?",
+        "filter-subtitle": "Click below button to make filter!"
+    },
+    "navbar": {}
+}

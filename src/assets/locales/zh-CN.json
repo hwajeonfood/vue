@@ -1,0 +1,10 @@
+{
+    "locale-name": "中文",
+    "locale-name-short-en": "zh_cn",
+    "index": {
+        "title": "花田 派对",
+        "filter-title": "你想吃什么食物？",
+        "filter-subtitle": "点击下面的按钮进行过滤！"
+    },
+    "navbar": {}
+}

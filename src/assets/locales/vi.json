@@ -1,0 +1,10 @@
+{
+    "locale-name": "Tiếng Việt",
+    "locale-name-short-en": "vi",
+    "index": {
+        "title": "Tiệc Hwajeon",
+        "filter-title": "Bạn muốn ăn loại thực phẩm nào?",
+        "filter-subtitle": "Nhấn vào nút bên dưới để lọc!"
+    },
+    "navbar": {}
+}

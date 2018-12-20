@@ -7,14 +7,16 @@
                         <img :src="steam" alt="steam" class="leaf1 z-index-0">
                         <div>
                             <div class="brand md-layout-item md-size-75 mx-auto md-small-size-90">
-                                <h1>화전 회식</h1>
+                                <h1>{{this.$t("index.title")}}</h1>
                             </div>
                             <div class="brand md-layout-item md-size-75 mx-auto md-small-size-90">
                                 <md-card>
                                     <md-card-header class="brand">
                                         <md-card-header-text>
-                                            <div class="md-title">먹고 싶은 음식이 뭐에요?</div>
-                                            <div class="md-subhead">아래 버튼을 클릭해서 필터링해요!</div>
+                                            <div class="md-title">{{this.$t("index.filter-title")}}</div>
+                                            <div
+                                                class="md-subhead"
+                                            >{{this.$t("index.filter-subtitle")}}</div>
                                         </md-card-header-text>
                                     </md-card-header>
 

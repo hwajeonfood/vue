@@ -1,0 +1,10 @@
+{
+    "locale-name": "한국어",
+    "locale-name-short-en": "ko",
+    "index": {
+        "title": "화전 회식",
+        "filter-title": "먹고 싶은 음식이 뭐에요?",
+        "filter-subtitle": "아래 버튼을 클릭해서 필터링해요!"
+    },
+    "navbar": {}
+}

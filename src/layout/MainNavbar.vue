@@ -76,6 +76,86 @@
                                 </a>
                             </li>
 
+                            <li class="md-list-item">
+                                <a
+                                    href="javascript:void(0)"
+                                    class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                                >
+                                    <div class="md-list-item-content">
+                                        <drop-down direction="down">
+                                            <md-button
+                                                slot="title"
+                                                class="md-button md-button-link md-white md-simple dropdown-toggle"
+                                                data-toggle="dropdown"
+                                            >
+                                                <i class="material-icons">language</i>
+                                                <p>가 ⇄ A ⇄ あ</p>
+                                            </md-button>
+                                            <ul
+                                                class="dropdown-menu dropdown-with-icons scroll-hidden"
+                                            >
+                                                <li
+                                                    v-for="(locMsg, key) in $i18n.messages"
+                                                    :key="key"
+                                                >
+                                                    <a
+                                                        href="javascript:void(0);"
+                                                        @click="changeLocale(locMsg['locale-name-short-en'])"
+                                                    >
+                                                        <i
+                                                            class="material-icons"
+                                                            v-if="navigatorStore.locale == locMsg['locale-name-short-en']"
+                                                        >location_on</i>
+                                                        <i
+                                                            class="material-icons"
+                                                            v-else-if="$i18n.locale == locMsg['locale-name-short-en']"
+                                                        >check</i>
+                                                        <i class="material-icons" v-else></i>
+                                                        <p>{{locMsg['locale-name']}}</p>
+                                                    </a>
+                                                </li>
+                                                <!-- <li>
+                                                    <a
+                                                        href="javascript:void(0);"
+                                                        @click="changeLocale('en')"
+                                                    >
+                                                        <i class="material-icons"></i>
+                                                        <p>English</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="javascript:void(0);"
+                                                        @click="changeLocale('vi')"
+                                                    >
+                                                        <i class="material-icons"></i>
+                                                        <p>Tiếng Việt</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="javascript:void(0);"
+                                                        @click="changeLocale('ja')"
+                                                    >
+                                                        <i class="material-icons"></i>
+                                                        <p>日本語</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="javascript:void(0);"
+                                                        @click="changeLocale('zh_cn')"
+                                                    >
+                                                        <i class="material-icons"></i>
+                                                        <p>中文</p>
+                                                    </a>
+                                                </li>-->
+                                            </ul>
+                                        </drop-down>
+                                    </div>
+                                </a>
+                            </li>
+
                             <md-list-item href="javascript:void(0);" v-if="isSignIn && isManager">
                                 <i class="material-icons">web</i>
                                 <p class="hidden-lg">상점정보변경/예약확인</p>
@@ -261,7 +341,10 @@ export default {
     },
     methods: {
         signOut() {},
-        showModalSignIn() {},
+        changeLocale(locale) {
+            this.$cookie.set("locale", locale, 30);
+            this.$i18n.locale = locale;
+        },
         bodyClick() {
             let bodyClick = document.getElementById("bodyClick");
 
@@ -308,6 +391,8 @@ export default {
         }
     },
     mounted() {
+        console.log(this.navigatorStore.locale);
+        console.log(this.$i18n.locale);
         document.addEventListener("scroll", this.scrollListener);
     },
     beforeDestroy() {

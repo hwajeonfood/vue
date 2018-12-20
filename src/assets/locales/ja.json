@@ -1,0 +1,10 @@
+{
+    "locale-name": "日本語",
+    "locale-name-short-en": "ja",
+    "index": {
+        "title": "花田会食",
+        "filter-title": "食べたい食べ物が何です？",
+        "filter-subtitle": "下のボタンをクリックしてフィルタリングよ！"
+    },
+    "navbar": {}
+}
