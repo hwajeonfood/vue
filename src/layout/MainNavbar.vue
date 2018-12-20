@@ -48,25 +48,25 @@
                                             >
                                                 <li>
                                                     <a href="javascript:void(0);">
-                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <i class="material-icons"></i>
                                                         <p>중국 음식</p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:void(0);">
-                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <i class="material-icons"></i>
                                                         <p>국수</p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:void(0);">
-                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <i class="material-icons"></i>
                                                         <p>술과 고기</p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:void(0);">
-                                                        <!-- <i class="material-icons">layers</i> -->
+                                                        <i class="material-icons"></i>
                                                         <p>술과 안주</p>
                                                     </a>
                                                 </li>

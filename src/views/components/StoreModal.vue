@@ -81,8 +81,8 @@
             </template>
 
             <template slot="footer">
-                <md-button class="md-simple">Nice Button</md-button>
-                <md-button class="md-danger md-simple" @click="closeModal">Close</md-button>
+                <md-button class="md-simple md-primary md-raised">Nice Button</md-button>
+                <md-button class="md-simple md-danger md-raised" @click="closeModal">Close</md-button>
             </template>
         </modal>
     </div>
