@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
+import VueCookie from 'vue-cookie';
 
 import MaterialKit from './plugins/material-kit';
 import router from './router';
@@ -9,9 +10,10 @@ import EventBus from "./EventBus";
 import App from './App.vue';
 
 Vue.use(MaterialKit);
+Vue.use(VueCookie);
 Vue.mixin(myMixin);
 Vue.prototype.$http = axios;
-Vue.prototype.$bus = EventBus; // 필요시 사용 용도
+Vue.prototype.$bus = EventBus;
 
 const app = new Vue({
   router,

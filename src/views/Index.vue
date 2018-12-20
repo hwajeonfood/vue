@@ -101,6 +101,11 @@ export default {
                 }
                 return false;
             });
+            this.$cookie.set(
+                "storedCategory",
+                JSON.stringify(this.category),
+                365
+            );
         },
         leafActive() {
             if (window.innerWidth < 768) {
@@ -125,7 +130,7 @@ export default {
             .then(result => {
                 this.category = result.data.map(obj => ({
                     name: obj.username,
-                    isSelected: true
+                    isSelected: false
                 }));
                 this.receivedContents = [
                     {
@@ -165,7 +170,25 @@ export default {
                     }
                 ];
 
-                // using cache, to do filtering
+                // using cookie, to filtering
+                const storedCategory = JSON.parse(
+                    this.$cookie.get("storedCategory")
+                );
+                if (
+                    storedCategory != null &&
+                    typeof storedCategory.length !== "undefined" &&
+                    storedCategory.length != 0
+                ) {
+                    storedCategory.forEach((sc, idx) => {
+                        if (sc.isSelected) {
+                            this.category[idx].isSelected = true;
+                        }
+                    });
+                } else {
+                    this.category.forEach(c => {
+                        c.isSelected = true;
+                    });
+                }
                 this.filterContents();
                 this.isLoading = false;
             });
