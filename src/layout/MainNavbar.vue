@@ -395,9 +395,6 @@ export default {
         }
     },
     mounted() {
-        console.log(`${this.$i18n.locale} : i18n`);
-        console.log(`${this.$bus.store.navigator.locale} : navigator`);
-
         document.addEventListener("scroll", this.scrollListener);
     },
     beforeDestroy() {
