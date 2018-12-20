@@ -103,15 +103,15 @@
                                                         @click="changeLocale(locMsg['locale-name-short-en'])"
                                                     >
                                                         <i
-                                                            class="material-icons color-green"
-                                                            v-if="locMsg['locale-name-short-en'] == navigatorStore.locale && navigatorStore.locale == $i18n.locale"
-                                                        >location_on</i>
+                                                            class="material-icons color-green strong"
+                                                            v-if="locMsg['locale-name-short-en'] == $bus.store.navigator.locale && $bus.store.navigator.locale == $i18n.locale"
+                                                        >check</i>
                                                         <i
-                                                            class="material-icons"
-                                                            v-else-if="locMsg['locale-name-short-en'] == navigatorStore.locale"
-                                                        >location_on</i>
+                                                            class="material-icons strong"
+                                                            v-else-if="locMsg['locale-name-short-en'] == $bus.store.navigator.locale"
+                                                        >translate</i>
                                                         <i
-                                                            class="material-icons color-green"
+                                                            class="material-icons color-green strong"
                                                             v-else-if="locMsg['locale-name-short-en'] == $i18n.locale"
                                                         >check</i>
                                                         <i class="material-icons" v-else></i>
@@ -395,8 +395,9 @@ export default {
         }
     },
     mounted() {
-        console.log(this.navigatorStore.locale);
-        console.log(this.$i18n.locale);
+        console.log(`${this.$i18n.locale} : i18n`);
+        console.log(`${this.$bus.store.navigator.locale} : navigator`);
+
         document.addEventListener("scroll", this.scrollListener);
     },
     beforeDestroy() {
@@ -414,5 +415,8 @@ export default {
 }
 .color-green {
     color: green;
+}
+.strong {
+    font-weight: bolder;
 }
 </style>

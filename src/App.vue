@@ -12,29 +12,26 @@
 
 <script>
 export default {
-    methods: {
-        findLocale() {
-            let locale = this.$cookie.get("locale");
-            this.navigatorStore.locale =
-                navigator.languages && navigator.languages.length
-                    ? navigator.languages[0]
-                    : navigator.language;
-            if (typeof this.navigatorStore.locale === "string") {
-                this.navigatorStore.locale = this.navigatorStore.locale.substr(
-                    0,
-                    2
-                );
-            }
-            if (locale != null) this.$i18n.locale = locale;
-            else if (typeof this.navigatorStore.locale === "string") {
-                this.$i18n.locale = this.navigatorStore.locale;
-            } else {
-                this.$i18n.locale = "ko";
-            }
+    beforeMount() {
+        let locale = this.$cookie.get("locale");
+        this.$bus.store.navigator.locale =
+            navigator.languages && navigator.languages.length
+                ? navigator.languages[0]
+                : navigator.language;
+        if (typeof this.$bus.store.navigator.locale === "string") {
+            this.$bus.store.navigator.locale = this.$bus.store.navigator.locale.substr(
+                0,
+                2
+            );
+            if (this.$bus.store.navigator.locale == "zh")
+                this.$bus.store.navigator.locale = "zh_cn";
         }
-    },
-    mounted() {
-        this.findLocale();
+        if (locale != null) this.$i18n.locale = locale;
+        else if (typeof this.$bus.store.navigator.locale === "string") {
+            this.$i18n.locale = this.$bus.store.navigator.locale;
+        } else {
+            this.$i18n.locale = "ko";
+        }
     }
 };
 </script>
