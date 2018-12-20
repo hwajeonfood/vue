@@ -1,8 +1,8 @@
 <template>
     <transition name="modal">
         <div class="modal-mask">
-            <div class="modal-wrapper">
-                <div class="modal-container" @click-outside="closeModal">
+            <div class="modal-wrapper" @click="closeModal">
+                <div class="modal-container" @click.stop>
                     <div class="modal-header">
                         <slot name="header"></slot>
                     </div>
@@ -25,7 +25,7 @@ export default {
     name: "modal",
     methods: {
         closeModal() {
-            this.$emit("close");
+            this.$bus.$emit("close_modal");
         }
     },
     mounted() {
@@ -73,5 +73,9 @@ export default {
 .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.scroll-x-lock {
+    overflow-x: hidden;
 }
 </style>

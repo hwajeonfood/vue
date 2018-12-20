@@ -1,11 +1,12 @@
 <template>
     <div id="wrapper">
-        <modal :close="hideModal">
+        <keyboard-event @keyup="keyboardEvent"></keyboard-event>
+        <modal>
             <template slot="header">
                 <h4 class="modal-title">{{store}}</h4>
                 <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
-                    @click="hideModal"
+                    @click="closeModal"
                 >
                     <md-icon>clear</md-icon>
                 </md-button>
@@ -81,7 +82,7 @@
 
             <template slot="footer">
                 <md-button class="md-simple">Nice Button</md-button>
-                <md-button class="md-danger md-simple" @click="hideModal">Close</md-button>
+                <md-button class="md-danger md-simple" @click="closeModal">Close</md-button>
             </template>
         </modal>
     </div>
@@ -93,17 +94,25 @@ import Loading from "vue-loading-overlay";
 import Modal from "@/components/Modal";
 import DatePick from "vue-date-pick";
 import "vue-date-pick/dist/vueDatePick.css";
+import KeyboardEvent from "./KeyBoardEvent";
 
 Vue.use(Loading);
 
 export default {
     components: {
         Modal,
-        DatePick
+        DatePick,
+        KeyboardEvent
     },
     methods: {
-        hideModal() {
+        closeModal() {
             this.$router.push("/");
+        },
+        keyboardEvent(e) {
+            const ESC_KEY = 27;
+            if (e.which == ESC_KEY) {
+                this.closeModal();
+            }
         }
     },
     data() {
@@ -132,6 +141,10 @@ export default {
         };
     },
     mounted() {
+        this.$bus.$on("close_modal", () => {
+            this.closeModal();
+        });
+
         let loader = this.$loading.show({
             loader: "dots",
             container: this.$refs.loader
