@@ -1,8 +1,9 @@
 <template>
     <div id="wrapper">
         <h2>{{$t("card-container.title")}}</h2>
-        <div>
+        <div class="auto-center">
             <store-card
+                class="fit-content"
                 v-for="content in contents"
                 :content="content"
                 :key="content.id"
@@ -37,5 +38,16 @@ export default {
 #app div:end {
     content: " ";
     background-color: royalblue;
+}
+
+.auto-center {
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
+.fit-content {
+    width: fit-content;
+    display: contents;
 }
 </style>

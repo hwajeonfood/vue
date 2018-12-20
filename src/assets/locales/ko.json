@@ -30,5 +30,9 @@
         "reserve-description": "예약을 원하세요?",
         "ok-button": "확인",
         "close-button": "닫기"
+    },
+    "store-card": {
+        "modal-open-button-description": "먹어볼래요?",
+        "modal-open-button": "자세히 보기"
     }
 }

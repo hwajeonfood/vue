@@ -30,5 +30,9 @@
         "reserve-description": "Do you want to make a reservation?",
         "ok-button": "Ok",
         "close-button": "Close"
+    },
+    "store-card": {
+        "modal-open-button-description": "Taste it?",
+        "modal-open-button": "More info"
     }
 }
