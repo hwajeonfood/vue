@@ -6,5 +6,11 @@
         "filter-title": "Bạn muốn ăn loại thực phẩm nào?",
         "filter-subtitle": "Nhấn vào nút bên dưới để lọc!"
     },
-    "navbar": {}
+    "navbar": {},
+    "not-found": {
+        "title": "Bạn bị lạc! ಥ_ಥ",
+        "subtitle": "Tôi không có màn hình để hiển thị.",
+        "error-description": "Mã lỗi: 404",
+        "go-home-button": "Chuyển đến trang đầu tiên"
+    }
 }

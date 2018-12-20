@@ -6,5 +6,11 @@
         "filter-title": "你想吃什么食物？",
         "filter-subtitle": "点击下面的按钮进行过滤！"
     },
-    "navbar": {}
+    "navbar": {},
+    "not-found": {
+        "title": "你迷路了！ :(",
+        "subtitle": "我没有要显示的屏幕。",
+        "error-description": "错误代码：404",
+        "go-home-button": "转到第一页"
+    }
 }

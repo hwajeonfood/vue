@@ -6,5 +6,11 @@
         "filter-title": "食べたい食べ物が何です？",
         "filter-subtitle": "下のボタンをクリックしてフィルタリングよ！"
     },
-    "navbar": {}
+    "navbar": {},
+    "not-found": {
+        "title": "道を失いましたよね！ ಥ_ಥ",
+        "subtitle": "見せ画面がありません。",
+        "error-description": "エラーコード：404",
+        "go-home-button": "最初のページへ"
+    }
 }

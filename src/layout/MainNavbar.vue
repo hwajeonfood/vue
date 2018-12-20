@@ -8,7 +8,7 @@
     >
         <div class="md-toolbar-row md-collapse-lateral">
             <div class="md-toolbar-section-start">
-                <h3 class="md-title">화전 회식</h3>
+                <h3 class="md-title">{{$t("navbar.title")}}</h3>
             </div>
             <div class="md-toolbar-section-end">
                 <md-button
@@ -28,6 +28,7 @@
                         </mobile-menu>
 
                         <md-list>
+                            <!--
                             <li class="md-list-item">
                                 <a
                                     href="javascript:void(0)"
@@ -75,7 +76,7 @@
                                     </div>
                                 </a>
                             </li>
-
+                            -->
                             <li class="md-list-item">
                                 <a
                                     href="javascript:void(0)"
@@ -118,42 +119,6 @@
                                                         <p>{{locMsg['locale-name']}}</p>
                                                     </a>
                                                 </li>
-                                                <!-- <li>
-                                                    <a
-                                                        href="javascript:void(0);"
-                                                        @click="changeLocale('en')"
-                                                    >
-                                                        <i class="material-icons"></i>
-                                                        <p>English</p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="javascript:void(0);"
-                                                        @click="changeLocale('vi')"
-                                                    >
-                                                        <i class="material-icons"></i>
-                                                        <p>Tiếng Việt</p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="javascript:void(0);"
-                                                        @click="changeLocale('ja')"
-                                                    >
-                                                        <i class="material-icons"></i>
-                                                        <p>日本語</p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="javascript:void(0);"
-                                                        @click="changeLocale('zh_cn')"
-                                                    >
-                                                        <i class="material-icons"></i>
-                                                        <p>中文</p>
-                                                    </a>
-                                                </li>-->
                                             </ul>
                                         </drop-down>
                                     </div>
@@ -162,13 +127,13 @@
 
                             <md-list-item href="javascript:void(0);" v-if="isSignIn && isManager">
                                 <i class="material-icons">web</i>
-                                <p class="hidden-lg">상점정보변경/예약확인</p>
-                                <md-tooltip md-direction="bottom">상점정보변경/예약확인</md-tooltip>
+                                <p class="hidden-lg">{{$t("navbar.manage-info")}}</p>
+                                <md-tooltip md-direction="bottom">{{$t("navbar.manage-info")}}</md-tooltip>
                             </md-list-item>
                             <md-list-item href="javascript:void(0);" v-else-if="isSIgnIn && isUser">
                                 <i class="material-icons">web</i>
-                                <p class="hidden-lg">유저 예약확인</p>
-                                <md-tooltip md-direction="bottom">유저 예약확인</md-tooltip>
+                                <p class="hidden-lg">{{$t("navbar.user-reserve-info")}}</p>
+                                <md-tooltip md-direction="bottom">{{$t("navbar.user-reserve-info")}}</md-tooltip>
                             </md-list-item>
                             <md-list-item
                                 href="javascript:void(0);"
@@ -176,8 +141,8 @@
                                 v-if="isSignIn"
                             >
                                 <i class="material-icons">exit_to_app</i>
-                                <p class="hidden-lg">Sign Out</p>
-                                <md-tooltip md-direction="bottom">Sign Out</md-tooltip>
+                                <p class="hidden-lg">{{$t("navbar.sign-out")}}</p>
+                                <md-tooltip md-direction="bottom">{{$t("navbar.sign-out")}}</md-tooltip>
                             </md-list-item>
                             <md-list-item
                                 href="javascript:void(0);"
@@ -185,100 +150,12 @@
                                 v-else
                             >
                                 <i class="material-icons">account_circle</i>
-                                <p class="hidden-lg">SignIn</p>
+                                <p class="hidden-lg">{{$t("navbar.sign-in")}}</p>
                                 <md-tooltip
                                     md-direction="bottom"
-                                >Sign in for Admin(Manage store) or User(to reserve)</md-tooltip>
+                                >{{$t("navbar.sign-in-description")}}</md-tooltip>
                             </md-list-item>
                         </md-list>
-
-                        <!--
-
-                        <md-list>
-                            
-
-                            <md-list-item
-                                href="https://demos.creative-tim.com/vue-material-kit/documentation/"
-                                target="_blank"
-                                v-if="showDownload"
-                            >
-                                <i class="material-icons">content_paste</i>
-                                <p>Documentation</p>
-                            </md-list-item>
-
-                            <md-list-item
-                                href="javascript:void(0)"
-                                @click="scrollToElement()"
-                                v-if="showDownload"
-                            >
-                                <i class="material-icons">cloud_download</i>
-                                <p>Download</p>
-                            </md-list-item>
-
-                            <li class="md-list-item" v-else>
-                                <a
-                                    href="javascript:void(0)"
-                                    class="md-list-item-router md-list-item-container md-button-clean dropdown"
-                                >
-                                    <div class="md-list-item-content">
-                                        <drop-down direction="down">
-                                            <md-button
-                                                slot="title"
-                                                class="md-button md-button-link md-white md-simple dropdown-toggle"
-                                                data-toggle="dropdown"
-                                            >
-                                                <i class="material-icons">view_carousel</i>
-                                                <p>Examples</p>
-                                            </md-button>
-                                            <ul class="dropdown-menu dropdown-with-icons">
-                                                <li>
-                                                    <a href="#/landing">
-                                                        <i class="material-icons">view_day</i>
-                                                        <p>Landing Page</p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#/login">
-                                                        <i class="material-icons">fingerprint</i>
-                                                        <p>Login Page</p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#/profile">
-                                                        <i class="material-icons">account_circle</i>
-                                                        <p>Profile Page</p>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </drop-down>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <md-list-item href="https://twitter.com/CreativeTim" target="_blank">
-                                <i class="fab fa-twitter"></i>
-                                <p class="hidden-lg">Twitter</p>
-                                <md-tooltip md-direction="bottom">Follow us on Twitter</md-tooltip>
-                            </md-list-item>
-                            <md-list-item
-                                href="https://www.facebook.com/CreativeTim"
-                                target="_blank"
-                            >
-                                <i class="fab fa-facebook-square"></i>
-                                <p class="hidden-lg">Facebook</p>
-                                <md-tooltip md-direction="bottom">Like us on Facebook</md-tooltip>
-                            </md-list-item>
-                            <md-list-item
-                                href="https://www.instagram.com/CreativeTimOfficial"
-                                target="_blank"
-                            >
-                                <i class="fab fa-instagram"></i>
-                                <p class="hidden-lg">Instagram</p>
-                                <md-tooltip md-direction="bottom">Follow us on Instagram</md-tooltip>
-                            </md-list-item>
-
-                        </md-list>
-                        -->
                     </div>
                 </div>
             </div>

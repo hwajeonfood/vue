@@ -1,6 +1,6 @@
 <template>
     <div id="wrapper">
-        <h2>Card 컨테이너 입니다</h2>
+        <h2>{{$t("card-container.title")}}</h2>
         <div>
             <store-card
                 v-for="content in contents"

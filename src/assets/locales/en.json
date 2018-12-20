@@ -6,5 +6,29 @@
         "filter-title": "Which food do you like to eat?",
         "filter-subtitle": "Click below button to make filter!"
     },
-    "navbar": {}
+    "navbar": {
+        "title": "Hwajeon Food",
+        "manage-info": "Manage store info",
+        "user-reserve-info": "Reservation info",
+        "sign-out": "Sign Out",
+        "sign-in": "Sign In",
+        "sign-in-description": "Sign in for Admin(Manage store) or User(to reserve)"
+    },
+    "not-found": {
+        "title": "You are lost! :(",
+        "subtitle": "I don't have a page to show.",
+        "error-description": "Error code : 404",
+        "go-home-button": "Go to home page"
+    },
+    "card-container": {
+        "title": "What is best choice..?"
+    },
+    "store-modal": {
+        "greeting": "We are {store}! Welcome!",
+        "store-intro": "Our store is...",
+        "image-description": "Menu / Inside the store",
+        "reserve-description": "Do you want to make a reservation?",
+        "ok-button": "Ok",
+        "close-button": "Close"
+    }
 }

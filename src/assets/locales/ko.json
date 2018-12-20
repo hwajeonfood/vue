@@ -6,5 +6,29 @@
         "filter-title": "먹고 싶은 음식이 뭐에요?",
         "filter-subtitle": "아래 버튼을 클릭해서 필터링해요!"
     },
-    "navbar": {}
+    "navbar": {
+        "title": "화전 회식",
+        "manage-info": "상점 정보 관리",
+        "user-reserve-info": "예약 확인",
+        "sign-out": "로그 인",
+        "sign-in": "로그 아웃",
+        "sign-in-description": "(예약을 위해)유저 또는 상점 관리자로 로그인하세요."
+    },
+    "not-found": {
+        "title": "길을 잃으셨군요! ㅠ_ㅠ",
+        "subtitle": "보여드릴 화면이 없어요.",
+        "error-description": "에러 코드 : 404",
+        "go-home-button": "첫 페이지로 가기"
+    },
+    "card-container": {
+        "title": "뭘 먹을까?"
+    },
+    "store-modal": {
+        "greeting": "{store} 입니다! 어서오세요!",
+        "store-intro": "우리 가게는요...",
+        "image-description": "메뉴판 / 식당 내부",
+        "reserve-description": "예약을 원하세요?",
+        "ok-button": "확인",
+        "close-button": "닫기"
+    }
 }

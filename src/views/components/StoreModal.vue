@@ -18,12 +18,13 @@
                 </div>
                 <md-content class="md-scrollbar scroll_modal" v-else>
                     <div class="title">
-                        <h3>{{store}} 입니다! 어서오세요!</h3>
+                        <h3>{{$t("store-modal.greeting", {store: this.store})}}</h3>
                     </div>
                     <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
                         <md-card class="md-card-nav-tabs">
                             <md-card-content>
-                                <md-button class="md-success md-lg">설명나오는 곳 :
+                                <md-button class="md-success md-lg">
+                                    {{$t("store-modal.store-intro")}}
                                     <br>
                                     {{description}}
                                 </md-button>
@@ -32,7 +33,7 @@
                     </div>
 
                     <div class="title">
-                        <h3>메뉴판 / 식당 내부</h3>
+                        <h3>{{$t("store-modal.image-description")}}</h3>
                     </div>
                     <div class="md-layout">
                         <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
@@ -68,7 +69,7 @@
                     </div>
 
                     <div class="title">
-                        <h3>예약을 원하세요?</h3>
+                        <h3>{{$t("store-modal.reserve-description")}}</h3>
                     </div>
                     <div class="md-layout">
                         <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
@@ -81,8 +82,11 @@
             </template>
 
             <template slot="footer">
-                <md-button class="md-simple md-primary md-raised">Nice Button</md-button>
-                <md-button class="md-simple md-danger md-raised" @click="closeModal">Close</md-button>
+                <md-button class="md-simple md-primary md-raised">{{$t("store-modal.ok-button")}}</md-button>
+                <md-button
+                    class="md-simple md-danger md-raised"
+                    @click="closeModal"
+                >{{$t("store-modal.close-button")}}</md-button>
             </template>
         </modal>
     </div>
@@ -184,6 +188,7 @@ export default {
 .scroll_modal {
     max-height: calc(100vh - 300px);
     overflow-y: auto;
+    padding-right: 15px;
 }
 
 .carousel_size {
