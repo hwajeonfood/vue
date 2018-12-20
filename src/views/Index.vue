@@ -50,17 +50,20 @@
                 </div>
             </div>
         </div>
+        <on-sign-in/>
     </div>
 </template>
 
 <script>
 import CardContainer from "./components/CardContainer";
 import Loading from "vue-loading-overlay";
+import OnSignIn from "./components/OnSignIn";
 
 export default {
     components: {
         CardContainer,
-        Loading
+        Loading,
+        OnSignIn
     },
     name: "index",
     bodyClass: "index-page",
@@ -139,36 +142,109 @@ export default {
                         id: 1,
                         store_name: "항공반점",
                         description: "짜장면먹으세요",
-                        foodType: ["BRET", "ANTONETTE"]
+                        location: "어디어디 앞",
+                        foodType: ["BRET", "ANTONETTE"],
+                        thumbnail: require("@/assets/img/hangkongbanjum.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
                     },
                     {
                         id: 2,
-                        store_name: "청춘상회",
-                        description: "술드세요 소주랑 맥주",
-                        foodType: ["BRET", "SAMANTHA", "KARIANNE"]
+                        store_name: "항공반점2",
+                        description: "보끔밥 마싯어",
+                        location: "항공반점알지",
+                        foodType: ["BRET", "SAMANTHA", "KARIANNE"],
+                        thumbnail: require("@/assets/img/bokumbab.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
                     },
                     {
                         id: 3,
                         store_name: "칼멘 레오폴드 사만사 카리아네",
                         description: "그 외 다른거 이런식으로 추가한다",
+                        location: "어디어디 ",
                         foodType: [
                             "KAMREN",
                             "LEOPOLDO_CORKERY",
                             "SAMANTHA",
                             "KARIANNE"
+                        ],
+                        thumbnail: require("@/assets/img/temp_bdjg.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
                         ]
                     },
                     {
                         id: 4,
                         store_name: "모리아",
                         description: "그 외 다른거 이런식으로 추가한다",
-                        foodType: ["MORIAH.STANTON"]
+                        location: "거 외 그 그곳",
+                        foodType: ["MORIAH.STANTON"],
+                        thumbnail: require("@/assets/img/temp_gc.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
                     },
                     {
                         id: 5,
                         store_name: "씨유등등~",
                         description: "그 외 다른거 이런식으로 추가한다",
-                        foodType: ["ELWYN.SKILES", "MAXIME_NIENOW", "DELPHINE"]
+                        location: "학교에서 10분거리",
+                        foodType: ["ELWYN.SKILES", "MAXIME_NIENOW", "DELPHINE"],
+                        thumbnail: require("@/assets/img/temp_jjm.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
+                    },
+                    {
+                        id: 6,
+                        store_name: "라면머거라",
+                        description: "그 외 다른거 이런식으로 추가한다",
+                        location: "뛰면 3분",
+                        foodType: [
+                            "ELWYN.SKILES",
+                            "KAMREN",
+                            "LEOPOLDO_CORKERY",
+                            "DELPHINE"
+                        ],
+                        thumbnail: require("@/assets/img/temp_rm.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
+                    },
+                    {
+                        id: 7,
+                        store_name: "삼겹사알",
+                        description: "그 외 다른거 이런식으로 추가한다",
+                        location: "응 그냥와",
+                        foodType: ["ELWYN.SKILES", "KAMREN", "DELPHINE"],
+                        thumbnail: require("@/assets/img/temp_sgs.jpg"),
+                        images: [
+                            require("@/assets/img/menu.jpg"),
+                            require("@/assets/img/hangkongbanjum.jpg"),
+                            require("@/assets/img/bokumbab.jpg"),
+                            require("@/assets/img/temp_jjm.jpg")
+                        ]
                     }
                 ];
 

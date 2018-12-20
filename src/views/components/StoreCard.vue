@@ -3,14 +3,14 @@
         <md-card class="md-card-example">
             <md-card-area md-inset>
                 <md-card-media md-ratio="16:9">
-                    <img src="@/assets/img/temp_store_img.jpg" alt="Coffee House">
+                    <img :src="content.thumbnail" alt="Coffee House">
                 </md-card-media>
 
                 <md-card-header>
-                    <h2 class="md-title">{{content.store}}</h2>
+                    <h2 class="md-title">{{content.store_name}}</h2>
                     <div class="md-subhead">
                         <md-icon>location_on</md-icon>
-                        <span>어디라고쓸까</span>
+                        <span>{{content.location}}</span>
                     </div>
                 </md-card-header>
 

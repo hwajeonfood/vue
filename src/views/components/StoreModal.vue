@@ -3,7 +3,7 @@
         <keyboard-event @keyup="keyboardEvent"></keyboard-event>
         <modal>
             <template slot="header">
-                <h4 class="modal-title">{{store}}</h4>
+                <h4 class="modal-title">{{store_name}}</h4>
                 <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="closeModal"
@@ -18,7 +18,7 @@
                 </div>
                 <md-content class="md-scrollbar scroll_modal" v-else>
                     <div class="title">
-                        <h3>{{$t("store-modal.greeting", {store: this.store})}}</h3>
+                        <h3>{{$t("store-modal.greeting", {store: this.store_name})}}</h3>
                     </div>
                     <div class="md-layout-item md-size-85 mx-auto md-small-size-90">
                         <md-card class="md-card-nav-tabs">
@@ -137,7 +137,7 @@ export default {
                 return `${yyyy}-${mm}-${dd}`;
             })(),
             isLoading: true,
-            store: "무엇을 먹을까?",
+            store_name: "무엇을 먹을까?",
             description: "",
             id: "",
             images: [],
@@ -164,7 +164,7 @@ export default {
             )
             .then(result => {
                 this.id = result.data["id"];
-                this.store = result.data["userId"] + " store";
+                this.store_name = result.data["userId"] + " store";
                 this.description = result.data["title"];
                 this.images = [
                     "http://img.etnews.com/news/article/2016/01/25/article_25154943153177.jpg",
